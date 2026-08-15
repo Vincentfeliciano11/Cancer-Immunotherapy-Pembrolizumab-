@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="description" content="Interactive 3D molecular view of pembrolizumab bound to PD-1 using experimental PDB structure 5B8C.">
+<title>Pembrolizumab 3D Molecular Configuration</title>
+<script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 15% 15%,rgba(255,122,0,.18),transparent 27%),radial-gradient(circle at 85% 20%,rgba(0,140,255,.2),transparent 30%),linear-gradient(160deg,#031d42,#0065d1 58%,#008cff);color:#fff;min-height:100vh;padding:28px}.wrap{max-width:1300px;margin:auto}.top{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:24px}.back{display:inline-flex;padding:11px 16px;border:2px solid rgba(255,255,255,.75);border-radius:12px;font-weight:900;background:rgba(255,255,255,.12)}h1{font-size:clamp(34px,6vw,72px);line-height:1;letter-spacing:-2px}.sub{margin-top:12px;color:rgba(255,255,255,.9);font-size:16px;max-width:850px}.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:stretch}.viewer-card,.info-card{background:rgba(255,255,255,.96);color:#16416f;border-radius:24px;box-shadow:0 25px 70px rgba(0,0,0,.25);overflow:hidden}.viewer-head{padding:18px 20px;border-bottom:1px solid rgba(0,101,209,.14);display:flex;align-items:center;justify-content:space-between;gap:12px}.viewer-title{font-size:18px;font-weight:1000;color:#0752ad}.badge{font-size:11px;font-weight:1000;text-transform:uppercase;letter-spacing:1px;background:#ff7a00;color:#fff;padding:6px 9px;border-radius:999px}.mol{height:620px;width:100%;position:relative;background:#f6fbff}.controls{display:flex;flex-wrap:wrap;gap:9px;padding:15px 18px;background:#eef8ff;border-top:1px solid rgba(0,101,209,.1)}button{border:0;cursor:pointer;padding:10px 13px;border-radius:10px;font-weight:900;background:#0752ad;color:#fff}button.alt{background:#ff7a00}.hint{padding:0 18px 17px;color:#587798;font-size:13px;font-weight:700}.info-card{padding:28px}.info-card h2{color:#0752ad;font-size:28px;line-height:1.1;margin-bottom:14px}.info-card p{color:#4f7192;line-height:1.75;margin-bottom:16px}.legend{display:grid;gap:9px;margin:18px 0}.legend-item{display:flex;gap:10px;align-items:center;font-weight:800;color:#315f8e}.dot{width:14px;height:14px;border-radius:50%;flex:0 0 14px}.orange{background:#ff7a00}.blue{background:#008cff}.navy{background:#092e5d}.source-box{margin-top:22px;padding:18px;border-radius:16px;background:#edf7ff;border:2px solid rgba(0,140,255,.14)}.source-box h3{color:#0752ad;margin-bottom:8px}.source-box a{display:block;color:#0065d1;font-weight:850;margin:7px 0;text-decoration:underline}.note{font-size:13px!important;line-height:1.55!important;background:#fff6e9;border-left:4px solid #ff7a00;padding:12px;margin-top:16px}.loading{position:absolute;inset:0;display:grid;place-items:center;color:#0752ad;font-weight:900;background:#f6fbff;z-index:2}.loading.hidden{display:none}@media(max-width:900px){body{padding:16px}.grid{grid-template-columns:1fr}.mol{height:520px}.top{align-items:flex-start;flex-direction:column}.back{order:-1}}@media(max-width:520px){.mol{height:420px}.info-card{padding:22px}.viewer-head{align-items:flex-start;flex-direction:column}.controls button{flex:1 1 46%}h1{letter-spacing:-1px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div><h1>3D Configuration of Pembrolizumab</h1><p class="sub">Rotate the experimental molecular structure 360° with your mouse or finger. Pinch or scroll to zoom.</p></div><a class="back" href="index.html">← Back to The Depths Of Immunotherapy</a></div>
+  <div class="grid">
+    <section class="viewer-card">
+      <div class="viewer-head"><div class="viewer-title">Pembrolizumab Fv bound to human PD-1 — PDB 5B8C</div><span class="badge">Experimental X-ray structure</span></div>
+      <div id="mol" class="mol"><div id="loading" class="loading">Loading experimental structure…</div></div>
+      <div class="controls">
+        <button id="complex">Show Complex</button><button id="pembro" class="alt">Pembrolizumab Only</button><button id="pd1">PD-1 Only</button><button id="spin" class="alt">Auto-Rotate</button><button id="reset">Reset View</button>
+      </div>
+      <p class="hint">Drag with one finger or the primary mouse button to rotate. Use pinch/scroll to zoom.</p>
+    </section>
+    <aside class="info-card">
+      <h2>What you are looking at</h2>
+      <p><strong>Pembrolizumab, known as Keytruda, is a monoclonal antibody and checkpoint inhibitor.</strong> Pembrolizumab binds to the PD-1 receptor on T-cells, blocking the interaction of PD-1 with PD-L1 and PD-L2. By reducing this interaction, pembrolizumab allows T-cells to stay active, improving their ability to identify and eliminate cancer cells.</p>
+      <p>This molecular view helps show the physical interaction behind that explanation: the variable regions of pembrolizumab contact the extracellular portion of PD-1.</p>
+      <div class="legend"><div class="legend-item"><span class="dot orange"></span>Pembrolizumab light-chain variable region</div><div class="legend-item"><span class="dot blue"></span>Pembrolizumab heavy-chain variable region</div><div class="legend-item"><span class="dot navy"></span>Human PD-1</div></div>
+      <p class="note"><strong>Scientific accuracy note:</strong> PDB 5B8C is not a photograph from a clinical trial and it is not the entire commercial antibody. It is an experimentally determined 2.15 Å X-ray crystal structure of pembrolizumab's Fv (variable heavy/light) fragment bound to the extracellular domain of human PD-1. Experimental structural data are the appropriate source for a molecular-level 3D configuration.</p>
+      <div class="source-box"><h3>Sources</h3><a href="https://www.rcsb.org/structure/5B8C" target="_blank" rel="noopener">RCSB Protein Data Bank — PDB 5B8C</a><a href="https://doi.org/10.1038/srep35297" target="_blank" rel="noopener">Horita et al., Scientific Reports (2016)</a><a href="https://3dmol.org/doc/" target="_blank" rel="noopener">3Dmol.js molecular viewer documentation</a></div>
+    </aside>
+  </div>
+</div>
+<script>
+let viewer,spinning=false;
+const el=document.getElementById('mol');
+viewer=$3Dmol.createViewer(el,{backgroundColor:'#f6fbff'});
+function styleComplex(){viewer.setStyle({},{});viewer.setStyle({chain:'A'},{cartoon:{color:'#ff7a00'},stick:{color:'#ff7a00',radius:.12}});viewer.setStyle({chain:'B'},{cartoon:{color:'#008cff'},stick:{color:'#008cff',radius:.12}});viewer.setStyle({chain:'C'},{cartoon:{color:'#092e5d'},stick:{color:'#092e5d',radius:.10}});viewer.zoomTo({chain:['A','B','C']});viewer.render();}
+function stylePembro(){viewer.setStyle({},{});viewer.setStyle({chain:'A'},{cartoon:{color:'#ff7a00'},stick:{color:'#ff7a00',radius:.12}});viewer.setStyle({chain:'B'},{cartoon:{color:'#008cff'},stick:{color:'#008cff',radius:.12}});viewer.zoomTo({chain:['A','B']});viewer.render();}
+function stylePD1(){viewer.setStyle({},{});viewer.setStyle({chain:'C'},{cartoon:{color:'#092e5d'},stick:{color:'#092e5d',radius:.12}});viewer.zoomTo({chain:'C'});viewer.render();}
+$3Dmol.download('pdb:5B8C',viewer,{},function(){document.getElementById('loading').classList.add('hidden');styleComplex();});
+document.getElementById('complex').onclick=styleComplex;document.getElementById('pembro').onclick=stylePembro;document.getElementById('pd1').onclick=stylePD1;document.getElementById('reset').onclick=()=>{viewer.zoomTo({chain:['A','B','C']});viewer.render();};document.getElementById('spin').onclick=function(){spinning=!spinning;viewer.spin(spinning?'y':false,1);this.textContent=spinning?'Stop Rotation':'Auto-Rotate';};
+</script>
+</body>
+</html>
