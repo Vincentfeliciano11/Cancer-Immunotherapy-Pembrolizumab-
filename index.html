@@ -155,6 +155,16 @@
     }
     .paper-button:hover{transform:translateY(-3px);box-shadow:0 20px 40px rgba(255,122,0,.22)}
 
+
+    .research-by{padding:0 24px 90px}
+    .research-wrap{max-width:760px;margin:auto;text-align:center}
+    .research-wrap h2{font-size:clamp(30px,4vw,42px);color:var(--navy);letter-spacing:-1.3px;margin-bottom:30px}
+    .research-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+    .research-person{background:#fff;border:1px solid rgba(11,99,206,.10);border-radius:24px;padding:24px;box-shadow:var(--shadow)}
+    .credit-label{color:var(--orange);text-transform:uppercase;letter-spacing:1.5px;font-size:12px;font-weight:900;margin-bottom:6px}.research-person h3{font-size:21px;color:var(--navy);margin-bottom:16px}
+    .research-person img{width:100%;max-width:260px;aspect-ratio:1/1;object-fit:cover;border-radius:18px;display:block;margin:0 auto;box-shadow:0 12px 28px rgba(7,27,51,.16)}
+    @media(max-width:650px){.research-grid{grid-template-columns:1fr}.research-person img{max-width:240px}}
+
     .bottom-band{
       margin-top:80px;background:linear-gradient(90deg,var(--orange),var(--blue));
       color:#fff;padding:22px 24px;text-align:center;font-size:14px;font-weight:750;
@@ -233,13 +243,31 @@
       </article>
     </section>
 
+
+    <section class="research-by fade" aria-label="Research credits">
+      <div class="research-wrap">
+        <div class="research-grid">
+          <article class="research-person">
+            <div class="credit-label">Research Done By</div>
+            <h3>Vincent Feliciano</h3>
+            <img src="vincent-feliciano.jpg" alt="Vincent Feliciano" />
+          </article>
+          <article class="research-person">
+            <div class="credit-label">Supervised By</div>
+            <h3>Professor Amy Ying Lin</h3>
+            <img src="amy-ying-lin.jpg" alt="Professor Amy Ying Lin" />
+          </article>
+        </div>
+      </div>
+    </section>
+
     <div class="bottom-band">
       The Depths Of Immunotherapy · Cancer Biology · PD-1 · Pembrolizumab
     </div>
   </main>
 
   <footer>
-    <p><strong>Vincent Feliciano</strong> · <strong>Professor Amy Ying Lin</strong></p>
+    <p><strong>Vincent Feliciano</strong> · Cancer Immunotherapy & Pembrolizumab</p>
   </footer>
 
   <script>
