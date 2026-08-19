@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>The Depths Of Immunotherapy</title>
+  <style>
+    :root{--blue:#008cff;--orange:#ff7a00;--text:#16416f}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100%;width:100%;overflow:hidden}
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 17% 22%,#ff850099,transparent 32%),
+        radial-gradient(circle at 82% 26%,#30b9ff94,transparent 32%),
+        linear-gradient(135deg,#0074e8,#1594ff 52%,#0060c7);
+      position:relative;
+    }
+    @keyframes dnaFloat{
+      0%,100%{transform:translate3d(0,0,0) rotate(var(--r)) scale(var(--s))}
+      50%{transform:translate3d(0,-28px,0) rotate(calc(var(--r) + 4deg)) scale(var(--s))}
+    }
+    @keyframes dnaGlow{
+      0%,100%{opacity:.16;filter:drop-shadow(0 0 7px #00d9ff) drop-shadow(0 0 13px #ff8a00)}
+      50%{opacity:.34;filter:drop-shadow(0 0 14px #fff) drop-shadow(0 0 24px #00d9ff) drop-shadow(0 0 28px #ff8a00)}
+    }
+    .dna-bg{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+    .dna-strand{position:absolute;width:170px;height:520px;opacity:.2;animation:dnaFloat 11s ease-in-out infinite,dnaGlow 3s ease-in-out infinite}
+    .dna-strand svg{width:100%;height:100%;overflow:visible}
+    .dna-strand path,.dna-strand line{vector-effect:non-scaling-stroke}
+    .dna-strand.s1{--r:-18deg;--s:1;left:3%;top:8%}
+    .dna-strand.s2{--r:22deg;--s:.8;right:4%;top:4%;animation-delay:-2s}
+    .dna-strand.s3{--r:10deg;--s:.65;left:12%;top:58%;animation-delay:-5s}
+    .dna-strand.s4{--r:-25deg;--s:.72;right:9%;top:55%;animation-delay:-7s}
+    .dna-strand.s5{--r:4deg;--s:.55;left:46%;top:30%;animation-delay:-3s;opacity:.12}
+    .blank-page{position:relative;z-index:2;min-height:100vh}
+  </style>
+</head>
+<body>
+  <div class="dna-bg" aria-hidden="true">
+    <div class="dna-strand s1"><svg viewBox="0 0 170 520"><path d="M35 0 C145 70 145 150 35 220 C-10 250 -10 340 135 410 C175 430 175 490 135 520" fill="none" stroke="#fff" stroke-width="4"/><path d="M135 0 C25 70 25 150 135 220 C180 250 180 340 35 410 C-5 430 -5 490 35 520" fill="none" stroke="#00d9ff" stroke-width="4"/><g stroke="#ff9a00" stroke-width="3"><line x1="53" y1="28" x2="117" y2="28"/><line x1="76" y1="70" x2="94" y2="70"/><line x1="50" y1="112" x2="120" y2="112"/><line x1="45" y1="165" x2="125" y2="165"/><line x1="58" y1="210" x2="112" y2="210"/><line x1="48" y1="310" x2="122" y2="310"/><line x1="60" y1="360" x2="110" y2="360"/><line x1="48" y1="415" x2="122" y2="415"/><line x1="65" y1="465" x2="105" y2="465"/></g></svg></div>
+    <div class="dna-strand s2"><svg viewBox="0 0 170 520"><path d="M35 0 C145 70 145 150 35 220 C-10 250 -10 340 135 410 C175 430 175 490 135 520" fill="none" stroke="#fff" stroke-width="4"/><path d="M135 0 C25 70 25 150 135 220 C180 250 180 340 35 410 C-5 430 -5 490 35 520" fill="none" stroke="#00d9ff" stroke-width="4"/><g stroke="#ff9a00" stroke-width="3"><line x1="53" y1="28" x2="117" y2="28"/><line x1="76" y1="70" x2="94" y2="70"/><line x1="50" y1="112" x2="120" y2="112"/><line x1="45" y1="165" x2="125" y2="165"/><line x1="58" y1="210" x2="112" y2="210"/><line x1="48" y1="310" x2="122" y2="310"/><line x1="60" y1="360" x2="110" y2="360"/><line x1="48" y1="415" x2="122" y2="415"/><line x1="65" y1="465" x2="105" y2="465"/></g></svg></div>
+    <div class="dna-strand s3"><svg viewBox="0 0 170 520"><path d="M35 0 C145 70 145 150 35 220 C-10 250 -10 340 135 410 C175 430 175 490 135 520" fill="none" stroke="#fff" stroke-width="4"/><path d="M135 0 C25 70 25 150 135 220 C180 250 180 340 35 410 C-5 430 -5 490 35 520" fill="none" stroke="#00d9ff" stroke-width="4"/></svg></div>
+    <div class="dna-strand s4"><svg viewBox="0 0 170 520"><path d="M35 0 C145 70 145 150 35 220 C-10 250 -10 340 135 410 C175 430 175 490 135 520" fill="none" stroke="#fff" stroke-width="4"/><path d="M135 0 C25 70 25 150 135 220 C180 250 180 340 35 410 C-5 430 -5 490 35 520" fill="none" stroke="#00d9ff" stroke-width="4"/></svg></div>
+    <div class="dna-strand s5"><svg viewBox="0 0 170 520"><path d="M35 0 C145 70 145 150 35 220 C-10 250 -10 340 135 410 C175 430 175 490 135 520" fill="none" stroke="#fff" stroke-width="4"/><path d="M135 0 C25 70 25 150 135 220 C180 250 180 340 35 410 C-5 430 -5 490 35 520" fill="none" stroke="#00d9ff" stroke-width="4"/></svg></div>
+  </div>
+  <main class="blank-page"></main>
+</body>
+</html>
