@@ -1,76 +1,46 @@
 (()=>{
+  const dnaStyle=document.createElement('style');
+  dnaStyle.textContent=`
+    .dna-bg{position:fixed!important;inset:0!important;z-index:4!important;pointer-events:none!important;overflow:hidden!important}
+    .firstpage-dna{position:absolute;font-size:clamp(56px,8vw,110px);opacity:.16;filter:drop-shadow(0 0 10px #fff) drop-shadow(0 0 18px #00d9ff) drop-shadow(0 0 20px #ff8a00);animation:firstPageDnaFloat 9s ease-in-out infinite}
+    .firstpage-dna.f1{left:3%;top:12%;transform:rotate(-18deg)}.firstpage-dna.f2{right:5%;top:18%;animation-delay:-2s;transform:rotate(20deg)}.firstpage-dna.f3{left:10%;top:62%;animation-delay:-5s;transform:rotate(8deg)}.firstpage-dna.f4{right:9%;top:66%;animation-delay:-7s;transform:rotate(-24deg)}.firstpage-dna.f5{left:46%;top:38%;animation-delay:-3s;opacity:.11}
+    @keyframes firstPageDnaFloat{0%,100%{translate:0 0}50%{translate:0 -30px}}
+    @keyframes firstPageCursorPop{0%{opacity:1;transform:translate(-50%,-50%) scale(.8) rotate(0deg)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.8) rotate(40deg)}}
+    .firstpage-dna-trail{position:fixed;left:0;top:0;z-index:99999;pointer-events:none;font-size:18px;line-height:1;filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 9px #00d9ff) drop-shadow(0 0 10px #ff8a00);animation:firstPageCursorPop .65s ease-out forwards}
+    @media(max-width:760px){.firstpage-dna{font-size:clamp(44px,12vw,72px);opacity:.12}}
+    @media(prefers-reduced-motion:reduce){.firstpage-dna,.firstpage-dna-trail{animation:none}.firstpage-dna-trail{display:none}}
+  `;
+  document.head.appendChild(dnaStyle);
+
+  const initFirstPageDNA=()=>{
+    let bg=document.querySelector('.dna-bg');
+    if(!bg){bg=document.createElement('div');bg.className='dna-bg';bg.setAttribute('aria-hidden','true');document.body.prepend(bg)}
+    if(!bg.querySelector('.firstpage-dna')){
+      ['f1','f2','f3','f4','f5'].forEach(c=>{const d=document.createElement('span');d.className='firstpage-dna '+c;d.textContent='🧬';bg.appendChild(d)});
+    }
+    if(!window.__firstPageDnaCursorBound && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+      window.__firstPageDnaCursorBound=true;let last=0,count=0;
+      const spawn=(x,y)=>{const el=document.createElement('i');el.className='firstpage-dna-trail';el.textContent=count++%3===0?'🧬':'✦';el.style.left=x+'px';el.style.top=y+'px';el.style.color=count%2?'#00d9ff':'#ff8a00';document.body.appendChild(el);setTimeout(()=>el.remove(),700)};
+      addEventListener('pointermove',e=>{if(e.pointerType==='mouse'&&performance.now()-last>55){last=performance.now();spawn(e.clientX,e.clientY)}});
+      addEventListener('pointerdown',e=>{for(let i=0;i<3;i++)setTimeout(()=>spawn(e.clientX+(Math.random()-.5)*30,e.clientY+(Math.random()-.5)*30),i*55)});
+    }
+  };
+  if(document.body)initFirstPageDNA();else addEventListener('DOMContentLoaded',initFirstPageDNA,{once:true});
+
   const restored=document.createElement('script');
   restored.src='https://cdn.jsdelivr.net/gh/Vincentfeliciano11/Cancer-Immunotherapy-Pembrolizumab-@465c5088c078339c3166ef990529d9d939e62590/effects.js';
   restored.onload=()=>{
     const style=document.createElement('style');
     style.textContent=`
-      /* Microscope removed everywhere while preserving all other shared effects. */
-      .microscope-message-wrap,.desktop-microscope-note,.mobile-microscope-note,.page2-microscope-note,
-      .microscope-lens,.microscope-view,.microscope-copy,.microscope-entry,.microscope-entry-graphic,.microscope-entry-label,
-      .scope-prompt,.scope-setup,.scope-card,.mag-options,.mag-btn,.scope-cancel,
-      [class*="microscope-notice"],[class*="scope-notice"]{
-        display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important
-      }
-
-      /* Preserve responsive viewport/split-screen behavior. */
-      .nav-inner{padding:clamp(9px,1.4vw,14px) clamp(12px,2.4vw,24px)!important;gap:clamp(8px,2vw,20px)!important}
-      .brand{font-size:clamp(12px,1.6vw,17px)!important}.site-address{font-size:clamp(9px,1.05vw,12px)!important}
-      .hero{padding:clamp(100px,12vw,125px) clamp(14px,3vw,24px) clamp(100px,13vw,140px)!important}
-      .hero-inner{gap:clamp(18px,3vw,35px)!important}.hero h1{font-size:clamp(38px,7vw,84px)!important;letter-spacing:clamp(-4px,-.35vw,-1.5px)!important}
-      .hero p{font-size:clamp(15px,1.8vw,18px)!important;line-height:1.65!important}.eyebrow{font-size:clamp(10px,1vw,12px)!important;padding:clamp(5px,.7vw,7px) clamp(9px,1vw,13px)!important}
-      .interactive-wrap,.visual{width:min(700px,100%)!important}.visual{height:clamp(500px,58vw,670px)!important;gap:clamp(8px,1.5vw,16px)!important;padding:clamp(8px,1.5vw,16px)!important}
-      .comic-panel{padding:clamp(12px,2vw,26px) clamp(9px,1.6vw,18px)!important;border-width:clamp(5px,.75vw,8px)!important;letter-spacing:clamp(.2px,.08vw,.8px)!important}
-      .comic-panel span{overflow-wrap:normal!important;word-break:keep-all!important;hyphens:none!important}
-      .panel-main span,.panel-pd1 span{white-space:nowrap!important;overflow-wrap:normal!important;word-break:keep-all!important;hyphens:none!important}
-      .panel-main{font-size:clamp(18px,4.8vw,43px)!important}
-      .info-card h3{white-space:nowrap!important;overflow-wrap:normal!important;word-break:keep-all!important;hyphens:none!important;font-size:clamp(22px,6vw,38px)!important;letter-spacing:clamp(-1.2px,-.15vw,0px)!important;max-width:100%!important;padding-right:44px!important}
-      .summary-section{padding:clamp(54px,8vw,90px) clamp(14px,3vw,24px)!important}.summary-card{padding:clamp(25px,5vw,52px)!important;border-radius:clamp(18px,3vw,30px)!important}
-      .summary-card h2{font-size:clamp(28px,4.5vw,48px)!important}.summary-card p{font-size:clamp(15px,1.8vw,17px)!important;line-height:clamp(1.65,1.9vw,1.95)!important}
-      .research-by{padding-left:clamp(14px,3vw,24px)!important;padding-right:clamp(14px,3vw,24px)!important;padding-bottom:clamp(55px,8vw,90px)!important}
-      .research-grid{gap:clamp(16px,3vw,34px)!important}.research-person{padding:clamp(16px,2.5vw,24px)!important}.research-person h3{font-size:clamp(17px,2vw,21px)!important}.institution{font-size:clamp(12px,1.4vw,14px)!important}
-      .bottom-band,footer{padding-left:clamp(14px,3vw,24px)!important;padding-right:clamp(14px,3vw,24px)!important;font-size:clamp(12px,1.4vw,14px)!important}
-      .paper-button{padding-left:clamp(15px,2.2vw,25px)!important;padding-right:clamp(15px,2.2vw,25px)!important;font-size:clamp(13px,1.5vw,16px)!important}
-      .molecule-link,.bottom-bible-verse .hero-verse{font-size:clamp(15px,2vw,22px)!important}
-
-      /* Keep Monoclonal Antibody clean on narrow screens. */
-      .panel-antibody > span{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:clamp(1px,.4vw,5px)!important;width:100%!important;max-width:100%!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important;hyphens:none!important;line-height:1.02!important}
-      .panel-antibody .comic-word{display:block!important;width:100%!important;white-space:nowrap!important;overflow-wrap:normal!important;word-break:keep-all!important;hyphens:none!important;text-align:center!important}
-
-      /* Restored DNA background + cursor effects. */
-      .dna-bg{position:fixed!important;inset:0!important;z-index:1!important;pointer-events:none!important;overflow:hidden!important}
-      .restored-dna{position:absolute;font-size:clamp(56px,8vw,110px);opacity:.14;filter:drop-shadow(0 0 10px #fff) drop-shadow(0 0 18px #00d9ff) drop-shadow(0 0 20px #ff8a00);animation:restoredDnaFloat 9s ease-in-out infinite}
-      .restored-dna.r1{left:3%;top:12%;transform:rotate(-18deg)}.restored-dna.r2{right:5%;top:18%;animation-delay:-2s;transform:rotate(20deg)}.restored-dna.r3{left:10%;top:62%;animation-delay:-5s;transform:rotate(8deg)}.restored-dna.r4{right:9%;top:66%;animation-delay:-7s;transform:rotate(-24deg)}.restored-dna.r5{left:46%;top:38%;animation-delay:-3s;opacity:.1}
-      @keyframes restoredDnaFloat{0%,100%{translate:0 0}50%{translate:0 -30px}}
-      @keyframes restoredCursorPop{0%{opacity:1;transform:translate(-50%,-50%) scale(.8) rotate(0deg)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.8) rotate(40deg)}}
-      .restored-dna-trail{position:fixed;left:0;top:0;z-index:9998;pointer-events:none;font-size:18px;line-height:1;filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 9px #00d9ff) drop-shadow(0 0 10px #ff8a00);animation:restoredCursorPop .65s ease-out forwards}
-
-      @media(max-width:1180px){.hero-inner{grid-template-columns:1fr 1.15fr!important}.hero h1{font-size:clamp(40px,6.2vw,68px)!important}.visual{height:clamp(500px,54vw,620px)!important}}
-      @media(max-width:950px){.hero-inner{grid-template-columns:1fr!important}.hero{text-align:center!important}.hero h1,.hero p{margin-left:auto!important;margin-right:auto!important}.interactive-wrap{margin-top:8px!important}.visual{height:clamp(500px,78vw,650px)!important}.research-grid{grid-template-columns:1fr 1fr!important}.site-address{display:none!important}}
-      @media(max-width:760px){.nav-inner{align-items:center!important}.brand{max-width:72vw!important;line-height:1.15!important}.hero{padding-top:105px!important}.hero h1{font-size:clamp(34px,11vw,54px)!important}.hero p{font-size:clamp(14px,4vw,17px)!important}.visual{height:clamp(470px,112vw,620px)!important}.research-grid{grid-template-columns:1fr!important}.summary-card{padding:clamp(22px,6vw,34px)!important}.paper-button{width:min(100%,420px)!important}.bottom-bible-verse{padding-left:8px!important;padding-right:8px!important}.panel-antibody{font-size:clamp(11px,3.15vw,15px)!important;padding-left:5px!important;padding-right:5px!important;letter-spacing:0!important}.panel-main{font-size:clamp(15px,4.5vw,24px)!important}.panel-main span{max-width:96%!important;padding-left:clamp(5px,2vw,10px)!important;padding-right:clamp(5px,2vw,10px)!important}.info-card h3{font-size:clamp(20px,5.7vw,30px)!important;padding-right:40px!important}.restored-dna{font-size:clamp(44px,12vw,72px);opacity:.11}}
-      @media(max-width:520px){.nav-inner{padding-left:10px!important;padding-right:10px!important}.brand{font-size:clamp(11px,3.4vw,14px)!important}.hero{padding-left:12px!important;padding-right:12px!important}.visual{gap:7px!important;padding:7px!important;height:clamp(450px,122vw,560px)!important}.comic-panel{border-width:5px!important}.summary-section,.research-by{padding-left:12px!important;padding-right:12px!important}.summary-card{border-radius:20px!important}.research-person{border-radius:18px!important}.panel-main{font-size:clamp(13px,4.1vw,19px)!important}.info-card h3{font-size:clamp(18px,5.2vw,24px)!important;letter-spacing:-.6px!important;padding-right:36px!important}}
-      @media(max-width:390px){.panel-antibody{font-size:clamp(10px,2.9vw,12px)!important;border-width:4px!important}.panel-main{font-size:clamp(12px,3.9vw,16px)!important}.info-card h3{font-size:clamp(16px,4.8vw,20px)!important;letter-spacing:-.8px!important}}
-      @media(prefers-reduced-motion:reduce){.restored-dna,.restored-dna-trail{animation:none}.restored-dna-trail{display:none}}
+      .microscope-message-wrap,.desktop-microscope-note,.mobile-microscope-note,.page2-microscope-note,.microscope-lens,.microscope-view,.microscope-copy,.microscope-entry,.microscope-entry-graphic,.microscope-entry-label,.scope-prompt,.scope-setup,.scope-card,.mag-options,.mag-btn,.scope-cancel,[class*="microscope-notice"],[class*="scope-notice"]{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}
+      .nav-inner{padding:clamp(9px,1.4vw,14px) clamp(12px,2.4vw,24px)!important;gap:clamp(8px,2vw,20px)!important}.brand{font-size:clamp(12px,1.6vw,17px)!important}.site-address{font-size:clamp(9px,1.05vw,12px)!important}.hero{padding:clamp(100px,12vw,125px) clamp(14px,3vw,24px) clamp(100px,13vw,140px)!important}.hero-inner{gap:clamp(18px,3vw,35px)!important}.hero h1{font-size:clamp(38px,7vw,84px)!important;letter-spacing:clamp(-4px,-.35vw,-1.5px)!important}.hero p{font-size:clamp(15px,1.8vw,18px)!important;line-height:1.65!important}.eyebrow{font-size:clamp(10px,1vw,12px)!important;padding:clamp(5px,.7vw,7px) clamp(9px,1vw,13px)!important}.interactive-wrap,.visual{width:min(700px,100%)!important}.visual{height:clamp(500px,58vw,670px)!important;gap:clamp(8px,1.5vw,16px)!important;padding:clamp(8px,1.5vw,16px)!important}.comic-panel{padding:clamp(12px,2vw,26px) clamp(9px,1.6vw,18px)!important;border-width:clamp(5px,.75vw,8px)!important;letter-spacing:clamp(.2px,.08vw,.8px)!important}.comic-panel span{overflow-wrap:normal!important;word-break:keep-all!important;hyphens:none!important}.panel-main span,.panel-pd1 span{white-space:nowrap!important;overflow-wrap:normal!important;word-break:keep-all!important;hyphens:none!important}.panel-main{font-size:clamp(18px,4.8vw,43px)!important}.info-card h3{white-space:nowrap!important;overflow-wrap:normal!important;word-break:keep-all!important;hyphens:none!important;font-size:clamp(22px,6vw,38px)!important;letter-spacing:clamp(-1.2px,-.15vw,0px)!important;max-width:100%!important;padding-right:44px!important}.summary-section{padding:clamp(54px,8vw,90px) clamp(14px,3vw,24px)!important}.summary-card{padding:clamp(25px,5vw,52px)!important;border-radius:clamp(18px,3vw,30px)!important}.summary-card h2{font-size:clamp(28px,4.5vw,48px)!important}.summary-card p{font-size:clamp(15px,1.8vw,17px)!important;line-height:clamp(1.65,1.9vw,1.95)!important}.research-by{padding-left:clamp(14px,3vw,24px)!important;padding-right:clamp(14px,3vw,24px)!important;padding-bottom:clamp(55px,8vw,90px)!important}.research-grid{gap:clamp(16px,3vw,34px)!important}.research-person{padding:clamp(16px,2.5vw,24px)!important}.research-person h3{font-size:clamp(17px,2vw,21px)!important}.institution{font-size:clamp(12px,1.4vw,14px)!important}.bottom-band,footer{padding-left:clamp(14px,3vw,24px)!important;padding-right:clamp(14px,3vw,24px)!important;font-size:clamp(12px,1.4vw,14px)!important}.paper-button{padding-left:clamp(15px,2.2vw,25px)!important;padding-right:clamp(15px,2.2vw,25px)!important;font-size:clamp(13px,1.5vw,16px)!important}.molecule-link,.bottom-bible-verse .hero-verse{font-size:clamp(15px,2vw,22px)!important}.panel-antibody > span{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:clamp(1px,.4vw,5px)!important;width:100%!important;max-width:100%!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important;hyphens:none!important;line-height:1.02!important}.panel-antibody .comic-word{display:block!important;width:100%!important;white-space:nowrap!important;overflow-wrap:normal!important;word-break:keep-all!important;hyphens:none!important;text-align:center!important}@media(max-width:1180px){.hero-inner{grid-template-columns:1fr 1.15fr!important}.hero h1{font-size:clamp(40px,6.2vw,68px)!important}.visual{height:clamp(500px,54vw,620px)!important}}@media(max-width:950px){.hero-inner{grid-template-columns:1fr!important}.hero{text-align:center!important}.hero h1,.hero p{margin-left:auto!important;margin-right:auto!important}.interactive-wrap{margin-top:8px!important}.visual{height:clamp(500px,78vw,650px)!important}.research-grid{grid-template-columns:1fr 1fr!important}.site-address{display:none!important}}@media(max-width:760px){.nav-inner{align-items:center!important}.brand{max-width:72vw!important;line-height:1.15!important}.hero{padding-top:105px!important}.hero h1{font-size:clamp(34px,11vw,54px)!important}.hero p{font-size:clamp(14px,4vw,17px)!important}.visual{height:clamp(470px,112vw,620px)!important}.research-grid{grid-template-columns:1fr!important}.summary-card{padding:clamp(22px,6vw,34px)!important}.paper-button{width:min(100%,420px)!important}.bottom-bible-verse{padding-left:8px!important;padding-right:8px!important}.panel-antibody{font-size:clamp(11px,3.15vw,15px)!important;padding-left:5px!important;padding-right:5px!important;letter-spacing:0!important}.panel-main{font-size:clamp(15px,4.5vw,24px)!important}.panel-main span{max-width:96%!important;padding-left:clamp(5px,2vw,10px)!important;padding-right:clamp(5px,2vw,10px)!important}.info-card h3{font-size:clamp(20px,5.7vw,30px)!important;padding-right:40px!important}}@media(max-width:520px){.nav-inner{padding-left:10px!important;padding-right:10px!important}.brand{font-size:clamp(11px,3.4vw,14px)!important}.hero{padding-left:12px!important;padding-right:12px!important}.visual{gap:7px!important;padding:7px!important;height:clamp(450px,122vw,560px)!important}.comic-panel{border-width:5px!important}.summary-section,.research-by{padding-left:12px!important;padding-right:12px!important}.summary-card{border-radius:20px!important}.research-person{border-radius:18px!important}.panel-main{font-size:clamp(13px,4.1vw,19px)!important}.info-card h3{font-size:clamp(18px,5.2vw,24px)!important;letter-spacing:-.6px!important;padding-right:36px!important}}@media(max-width:390px){.panel-antibody{font-size:clamp(10px,2.9vw,12px)!important;border-width:4px!important}.panel-main{font-size:clamp(12px,3.9vw,16px)!important}.info-card h3{font-size:clamp(16px,4.8vw,20px)!important;letter-spacing:-.8px!important}}
     `;
     document.head.appendChild(style);
-
     document.body.classList.remove('microscope-active','scope-selecting');
     document.querySelectorAll('.microscope-message-wrap,.desktop-microscope-note,.mobile-microscope-note,.page2-microscope-note,.microscope-lens,.microscope-view,.microscope-copy,.microscope-entry,.scope-prompt,.scope-setup').forEach(el=>el.remove());
-
-    const antibody=document.querySelector('.panel-antibody > span');
-    if(antibody)antibody.innerHTML='<span class="comic-word">MONOCLONAL</span><span class="comic-word">ANTIBODY</span>';
-
-    const dnaBg=document.querySelector('.dna-bg');
-    if(dnaBg && !dnaBg.querySelector('.restored-dna')){
-      ['r1','r2','r3','r4','r5'].forEach(c=>{const d=document.createElement('span');d.className='restored-dna '+c;d.textContent='🧬';dnaBg.appendChild(d);});
-    }
-
-    if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
-      let last=0,count=0;
-      const spawn=(x,y)=>{const el=document.createElement('i');el.className='restored-dna-trail';el.textContent=count++%3===0?'🧬':'✦';el.style.left=x+'px';el.style.top=y+'px';el.style.color=count%2?'#00d9ff':'#ff8a00';document.body.appendChild(el);setTimeout(()=>el.remove(),700)};
-      addEventListener('pointermove',e=>{if(e.pointerType==='mouse'&&performance.now()-last>55){last=performance.now();spawn(e.clientX,e.clientY)}});
-      addEventListener('pointerdown',e=>{for(let i=0;i<3;i++)setTimeout(()=>spawn(e.clientX+(Math.random()-.5)*30,e.clientY+(Math.random()-.5)*30),i*55)});
-    }
+    const antibody=document.querySelector('.panel-antibody > span');if(antibody)antibody.innerHTML='<span class="comic-word">MONOCLONAL</span><span class="comic-word">ANTIBODY</span>';
+    initFirstPageDNA();
   };
-  restored.onerror=()=>console.error('Unable to restore site effects.');
+  restored.onerror=()=>{initFirstPageDNA();console.error('Unable to restore site effects.');};
   document.head.appendChild(restored);
 })();
