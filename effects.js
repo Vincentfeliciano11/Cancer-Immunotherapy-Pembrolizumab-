@@ -36,11 +36,20 @@
       .panel-antibody > span{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:clamp(1px,.4vw,5px)!important;width:100%!important;max-width:100%!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important;hyphens:none!important;line-height:1.02!important}
       .panel-antibody .comic-word{display:block!important;width:100%!important;white-space:nowrap!important;overflow-wrap:normal!important;word-break:keep-all!important;hyphens:none!important;text-align:center!important}
 
+      /* Restored DNA background + cursor effects. */
+      .dna-bg{position:fixed!important;inset:0!important;z-index:1!important;pointer-events:none!important;overflow:hidden!important}
+      .restored-dna{position:absolute;font-size:clamp(56px,8vw,110px);opacity:.14;filter:drop-shadow(0 0 10px #fff) drop-shadow(0 0 18px #00d9ff) drop-shadow(0 0 20px #ff8a00);animation:restoredDnaFloat 9s ease-in-out infinite}
+      .restored-dna.r1{left:3%;top:12%;transform:rotate(-18deg)}.restored-dna.r2{right:5%;top:18%;animation-delay:-2s;transform:rotate(20deg)}.restored-dna.r3{left:10%;top:62%;animation-delay:-5s;transform:rotate(8deg)}.restored-dna.r4{right:9%;top:66%;animation-delay:-7s;transform:rotate(-24deg)}.restored-dna.r5{left:46%;top:38%;animation-delay:-3s;opacity:.1}
+      @keyframes restoredDnaFloat{0%,100%{translate:0 0}50%{translate:0 -30px}}
+      @keyframes restoredCursorPop{0%{opacity:1;transform:translate(-50%,-50%) scale(.8) rotate(0deg)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.8) rotate(40deg)}}
+      .restored-dna-trail{position:fixed;left:0;top:0;z-index:9998;pointer-events:none;font-size:18px;line-height:1;filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 9px #00d9ff) drop-shadow(0 0 10px #ff8a00);animation:restoredCursorPop .65s ease-out forwards}
+
       @media(max-width:1180px){.hero-inner{grid-template-columns:1fr 1.15fr!important}.hero h1{font-size:clamp(40px,6.2vw,68px)!important}.visual{height:clamp(500px,54vw,620px)!important}}
       @media(max-width:950px){.hero-inner{grid-template-columns:1fr!important}.hero{text-align:center!important}.hero h1,.hero p{margin-left:auto!important;margin-right:auto!important}.interactive-wrap{margin-top:8px!important}.visual{height:clamp(500px,78vw,650px)!important}.research-grid{grid-template-columns:1fr 1fr!important}.site-address{display:none!important}}
-      @media(max-width:760px){.nav-inner{align-items:center!important}.brand{max-width:72vw!important;line-height:1.15!important}.hero{padding-top:105px!important}.hero h1{font-size:clamp(34px,11vw,54px)!important}.hero p{font-size:clamp(14px,4vw,17px)!important}.visual{height:clamp(470px,112vw,620px)!important}.research-grid{grid-template-columns:1fr!important}.summary-card{padding:clamp(22px,6vw,34px)!important}.paper-button{width:min(100%,420px)!important}.bottom-bible-verse{padding-left:8px!important;padding-right:8px!important}.panel-antibody{font-size:clamp(11px,3.15vw,15px)!important;padding-left:5px!important;padding-right:5px!important;letter-spacing:0!important}.panel-main{font-size:clamp(15px,4.5vw,24px)!important}.panel-main span{max-width:96%!important;padding-left:clamp(5px,2vw,10px)!important;padding-right:clamp(5px,2vw,10px)!important}.info-card h3{font-size:clamp(20px,5.7vw,30px)!important;padding-right:40px!important}}
+      @media(max-width:760px){.nav-inner{align-items:center!important}.brand{max-width:72vw!important;line-height:1.15!important}.hero{padding-top:105px!important}.hero h1{font-size:clamp(34px,11vw,54px)!important}.hero p{font-size:clamp(14px,4vw,17px)!important}.visual{height:clamp(470px,112vw,620px)!important}.research-grid{grid-template-columns:1fr!important}.summary-card{padding:clamp(22px,6vw,34px)!important}.paper-button{width:min(100%,420px)!important}.bottom-bible-verse{padding-left:8px!important;padding-right:8px!important}.panel-antibody{font-size:clamp(11px,3.15vw,15px)!important;padding-left:5px!important;padding-right:5px!important;letter-spacing:0!important}.panel-main{font-size:clamp(15px,4.5vw,24px)!important}.panel-main span{max-width:96%!important;padding-left:clamp(5px,2vw,10px)!important;padding-right:clamp(5px,2vw,10px)!important}.info-card h3{font-size:clamp(20px,5.7vw,30px)!important;padding-right:40px!important}.restored-dna{font-size:clamp(44px,12vw,72px);opacity:.11}}
       @media(max-width:520px){.nav-inner{padding-left:10px!important;padding-right:10px!important}.brand{font-size:clamp(11px,3.4vw,14px)!important}.hero{padding-left:12px!important;padding-right:12px!important}.visual{gap:7px!important;padding:7px!important;height:clamp(450px,122vw,560px)!important}.comic-panel{border-width:5px!important}.summary-section,.research-by{padding-left:12px!important;padding-right:12px!important}.summary-card{border-radius:20px!important}.research-person{border-radius:18px!important}.panel-main{font-size:clamp(13px,4.1vw,19px)!important}.info-card h3{font-size:clamp(18px,5.2vw,24px)!important;letter-spacing:-.6px!important;padding-right:36px!important}}
       @media(max-width:390px){.panel-antibody{font-size:clamp(10px,2.9vw,12px)!important;border-width:4px!important}.panel-main{font-size:clamp(12px,3.9vw,16px)!important}.info-card h3{font-size:clamp(16px,4.8vw,20px)!important;letter-spacing:-.8px!important}}
+      @media(prefers-reduced-motion:reduce){.restored-dna,.restored-dna-trail{animation:none}.restored-dna-trail{display:none}}
     `;
     document.head.appendChild(style);
 
@@ -49,6 +58,18 @@
 
     const antibody=document.querySelector('.panel-antibody > span');
     if(antibody)antibody.innerHTML='<span class="comic-word">MONOCLONAL</span><span class="comic-word">ANTIBODY</span>';
+
+    const dnaBg=document.querySelector('.dna-bg');
+    if(dnaBg && !dnaBg.querySelector('.restored-dna')){
+      ['r1','r2','r3','r4','r5'].forEach(c=>{const d=document.createElement('span');d.className='restored-dna '+c;d.textContent='🧬';dnaBg.appendChild(d);});
+    }
+
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+      let last=0,count=0;
+      const spawn=(x,y)=>{const el=document.createElement('i');el.className='restored-dna-trail';el.textContent=count++%3===0?'🧬':'✦';el.style.left=x+'px';el.style.top=y+'px';el.style.color=count%2?'#00d9ff':'#ff8a00';document.body.appendChild(el);setTimeout(()=>el.remove(),700)};
+      addEventListener('pointermove',e=>{if(e.pointerType==='mouse'&&performance.now()-last>55){last=performance.now();spawn(e.clientX,e.clientY)}});
+      addEventListener('pointerdown',e=>{for(let i=0;i<3;i++)setTimeout(()=>spawn(e.clientX+(Math.random()-.5)*30,e.clientY+(Math.random()-.5)*30),i*55)});
+    }
   };
   restored.onerror=()=>console.error('Unable to restore site effects.');
   document.head.appendChild(restored);
