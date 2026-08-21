@@ -1,0 +1,61 @@
+/* Shared UV Mode control styling for both pages */
+.uv-switch-wrap,
+.uv-mode-btn {
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 40px !important;
+  padding: 9px 18px !important;
+  border: 2px solid #fff !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg,#7b2cff,#008cff) !important;
+  color: #fff !important;
+  font: 900 14px/1 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+  box-shadow: 0 0 15px #7b2cff99,0 0 15px #00d9ff80 !important;
+  white-space: nowrap !important;
+}
+
+/* Page 1: reserve a true center column so the UV control cannot cover the site name. */
+body:not(:has(#uvModeBtn)) .nav-inner {
+  display: grid !important;
+  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr) !important;
+  align-items: center !important;
+  column-gap: 18px !important;
+}
+body:not(:has(#uvModeBtn)) .nav-inner > .brand {
+  grid-column: 1 !important;
+  justify-self: start !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+body:not(:has(#uvModeBtn)) .nav-inner > div:last-child {
+  grid-column: 3 !important;
+  justify-self: end !important;
+  margin-left: 0 !important;
+  min-width: 0 !important;
+}
+body:not(:has(#uvModeBtn)) .uv-switch-wrap {
+  position: fixed !important;
+  left: 50% !important;
+  right: auto !important;
+  top: 8px !important;
+  transform: translateX(-50%) !important;
+  z-index: 18000 !important;
+}
+
+/* Page 2 already owns the centered control; never show the injected duplicate. */
+body:has(#uvModeBtn) .uv-switch-wrap { display: none !important; }
+body:has(#uvModeBtn) #uvModeBtn { justify-self: center !important; }
+
+@media (max-width: 900px) {
+  body:not(:has(#uvModeBtn)) .nav-inner {
+    grid-template-columns: minmax(0,1fr) auto !important;
+    row-gap: 8px !important;
+    padding-top: 56px !important;
+  }
+  body:not(:has(#uvModeBtn)) .nav-inner > .brand { grid-column: 1 !important; }
+  body:not(:has(#uvModeBtn)) .nav-inner > div:last-child { grid-column: 2 !important; }
+  .uv-switch-wrap,
+  .uv-mode-btn { min-height: 36px !important; padding: 7px 12px !important; font-size: 12px !important; }
+}
