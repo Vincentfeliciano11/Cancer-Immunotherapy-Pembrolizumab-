@@ -8,19 +8,19 @@
     :root { --blue:#008cff; --orange:#ff7a00; --nav-height:70px; }
     * { box-sizing:border-box; margin:0; padding:0; }
     html,body { min-height:100%; width:100%; }
-    body {
-      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:radial-gradient(circle at 17% 22%,#ff850099,transparent 32%),radial-gradient(circle at 82% 26%,#30b9ff94,transparent 32%),linear-gradient(135deg,#0074e8,#1594ff 52%,#0060c7);
-      overflow-x:hidden;
-    }
+    body { font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:radial-gradient(circle at 17% 22%,#ff850099,transparent 32%),radial-gradient(circle at 82% 26%,#30b9ff94,transparent 32%),linear-gradient(135deg,#0074e8,#1594ff 52%,#0060c7); overflow-x:hidden; }
     .nav { position:fixed; inset:0 0 auto; z-index:999; min-height:var(--nav-height); background:#0060cdee; backdrop-filter:blur(16px); border-bottom:1px solid #ffffff2e; }
-    .nav-inner { max-width:1700px; margin:auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
-    .brand { display:flex; align-items:center; gap:11px; color:#fff; text-decoration:none; font-weight:900; font-size:22px; letter-spacing:-.3px; }
+    .nav-inner { max-width:1700px; margin:auto; padding:14px 24px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:20px; }
+    .brand { justify-self:start; display:flex; align-items:center; gap:11px; color:#fff; text-decoration:none; font-weight:900; font-size:22px; letter-spacing:-.3px; }
     .brand-text { background:linear-gradient(180deg,#fff,#ffd8ad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-    .page-nav-btn { display:inline-flex; align-items:center; justify-content:center; padding:9px 16px; border:2px solid #fff; border-radius:12px; background:linear-gradient(135deg,#008cff,#ff8500); color:#fff; text-decoration:none; font-weight:900; font-size:14px; box-shadow:0 0 15px #00d9ff80,0 0 12px #ff8a0066; transition:.2s; white-space:nowrap; }
+    .uv-mode-btn { justify-self:center; display:inline-flex; align-items:center; justify-content:center; padding:9px 18px; border:2px solid #fff; border-radius:12px; background:linear-gradient(135deg,#7b2cff,#008cff); color:#fff; font-weight:900; font-size:14px; box-shadow:0 0 15px #7b2cff99,0 0 15px #00d9ff80; cursor:pointer; transition:.2s; }
+    .uv-mode-btn:hover { transform:translateY(-2px) scale(1.04); box-shadow:0 0 22px #fff,0 0 28px #7b2cff,0 0 20px #00d9ff; }
+    .page-nav-btn { justify-self:end; display:inline-flex; align-items:center; justify-content:center; padding:9px 16px; border:2px solid #fff; border-radius:12px; background:linear-gradient(135deg,#008cff,#ff8500); color:#fff; text-decoration:none; font-weight:900; font-size:14px; box-shadow:0 0 15px #00d9ff80,0 0 12px #ff8a0066; transition:.2s; white-space:nowrap; }
     .page-nav-btn:hover { transform:translateY(-2px) scale(1.04); box-shadow:0 0 22px #fff,0 0 28px #00d9ff,0 0 20px #ff8a00; }
     @keyframes glow { 50% { text-shadow:0 0 10px #fff,0 0 22px #00d9ff,0 0 28px #ff8a00; } }
     .electric { animation:glow 2.2s ease-in-out infinite; color:#fff; }
+    body.uv-mode { filter:saturate(1.2) contrast(1.08); }
+    body.uv-mode .app-shell { box-shadow:0 0 34px #7b2cffaa,0 0 45px #00d9ff66; }
     .app-page { position:relative; z-index:1; min-height:100vh; padding:calc(var(--nav-height) + 18px) 16px 24px; }
     .dashboard-heading { width:min(1700px,100%); margin:0 auto 12px; display:flex; align-items:center; justify-content:space-between; gap:12px; color:#fff; }
     .dashboard-heading h1 { font-size:clamp(18px,2vw,28px); text-shadow:0 2px 12px #003e7c; }
@@ -30,30 +30,14 @@
     .dna { position:fixed; z-index:0; font-size:90px; opacity:.13; filter:drop-shadow(0 0 15px #fff); animation:float 7s ease-in-out infinite; pointer-events:none; }
     @keyframes float { 50% { transform:translateY(-35px) rotate(8deg); } }
     .d1 { left:7%; top:25%; } .d2 { right:9%; top:55%; animation-delay:-3s; } .d3 { left:45%; bottom:12%; animation-delay:-5s; }
-    @media (max-width:700px) {
-      :root { --nav-height:64px; }
-      .nav-inner { padding:11px 14px; }
-      .brand { font-size:16px; gap:7px; }
-      .brand-text { max-width:210px; line-height:1.05; }
-      .page-nav-btn { padding:8px 11px; font-size:12px; }
-      .app-page { padding:calc(var(--nav-height) + 12px) 7px 12px; }
-      .dashboard-heading { align-items:flex-start; flex-direction:column; margin-bottom:9px; padding:0 4px; }
-      .filter-badge { font-size:12px; padding:6px 9px; }
-      .app-shell { padding:3px; border-radius:12px; }
-      .streamlit-frame { height:1250px; border-radius:9px; }
-      .dna { font-size:64px; }
-    }
+    @media(max-width:700px){ :root{--nav-height:64px}.nav-inner{padding:11px 10px;gap:6px}.brand{font-size:13px;gap:5px}.brand-text{max-width:150px;line-height:1.05}.uv-mode-btn{padding:7px 9px;font-size:11px}.page-nav-btn{padding:7px 9px;font-size:11px}.app-page{padding:calc(var(--nav-height) + 12px) 7px 12px}.dashboard-heading{align-items:flex-start;flex-direction:column;margin-bottom:9px;padding:0 4px}.filter-badge{font-size:12px;padding:6px 9px}.app-shell{padding:3px;border-radius:12px}.streamlit-frame{height:1250px;border-radius:9px}.dna{font-size:64px} }
   </style>
 </head>
 <body>
   <div class="dna d1">🧬</div><div class="dna d2">🧬</div><div class="dna d3">🧬</div>
-  <nav class="nav"><div class="nav-inner"><a href="index.html" class="brand"><span>🧬</span><span class="brand-text electric">The Depths Of Immunotherapy</span></a><a href="index.html" class="page-nav-btn">← Home</a></div></nav>
-  <main class="app-page">
-    <div class="dashboard-heading"><h1>Interactive Immunotherapy Dashboard</h1><span class="filter-badge">🔎 Filters available in dashboard</span></div>
-    <section class="app-shell" aria-label="Interactive immunotherapy data explorer">
-      <iframe src="https://h2lzomy25z7wad5moa7tjy.streamlit.app/?embed=true" class="streamlit-frame" title="Interactive Immunotherapy Data Explorer with filters" loading="eager" allow="geolocation; microphone; camera; fullscreen" sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
-    </section>
-  </main>
+  <nav class="nav"><div class="nav-inner"><a href="index.html" class="brand"><span>🧬</span><span class="brand-text electric">The Depths Of Immunotherapy</span></a><button type="button" class="uv-mode-btn" id="uvModeBtn" aria-pressed="false">☀ UV Mode</button><a href="index.html" class="page-nav-btn">← Home</a></div></nav>
+  <main class="app-page"><div class="dashboard-heading"><h1>Interactive Immunotherapy Dashboard</h1><span class="filter-badge">🔎 Filters available in dashboard</span></div><section class="app-shell" aria-label="Interactive immunotherapy data explorer"><iframe src="https://h2lzomy25z7wad5moa7tjy.streamlit.app/?embed=true" class="streamlit-frame" title="Interactive Immunotherapy Data Explorer with filters" loading="eager" allow="geolocation; microphone; camera; fullscreen" sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe></section></main>
+  <script>const uvBtn=document.getElementById('uvModeBtn');uvBtn.addEventListener('click',()=>{const on=document.body.classList.toggle('uv-mode');uvBtn.setAttribute('aria-pressed',String(on));});</script>
   <script src="effects.js?v=20260819-uv2"></script>
 </body>
 </html>
