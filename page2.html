@@ -8,6 +8,7 @@
     :root {
       --blue: #008cff;
       --orange: #ff7a00;
+      --nav-height: 70px;
     }
     * {
       box-sizing: border-box;
@@ -23,12 +24,13 @@
       background: radial-gradient(circle at 17% 22%, #ff850099, transparent 32%),
                   radial-gradient(circle at 82% 26%, #30b9ff94, transparent 32%),
                   linear-gradient(135deg, #0074e8, #1594ff 52%, #0060c7);
-      overflow: hidden;
+      overflow-x: hidden;
     }
     .nav {
       position: fixed;
       inset: 0 0 auto;
       z-index: 999;
+      min-height: var(--nav-height);
       background: #0060cdee;
       backdrop-filter: blur(16px);
       border-bottom: 1px solid #ffffff2e;
@@ -71,6 +73,7 @@
       font-size: 14px;
       box-shadow: 0 0 15px #00d9ff80, 0 0 12px #ff8a0066;
       transition: .2s;
+      white-space: nowrap;
     }
     .page-nav-btn:hover {
       transform: translateY(-2px) scale(1.04);
@@ -85,18 +88,35 @@
       animation: glow 2.2s ease-in-out infinite;
       color: #fff;
     }
-    .blank-page {
+    .app-page {
+      position: relative;
+      z-index: 1;
       min-height: 100vh;
-      padding-top: 70px;
+      padding: calc(var(--nav-height) + 22px) 22px 22px;
+    }
+    .app-shell {
+      width: min(1500px, 100%);
+      min-height: calc(100vh - var(--nav-height) - 44px);
+      margin: 0 auto;
+      padding: 8px;
+      border: 1px solid #ffffff66;
+      border-radius: 22px;
+      background: #ffffff1f;
+      box-shadow: 0 20px 55px #003e7c66, 0 0 28px #00d9ff38, 0 0 24px #ff8a0030;
+      backdrop-filter: blur(10px);
+      overflow: hidden;
     }
     .streamlit-frame {
       width: 100%;
-      height: calc(100vh - 70px);
+      height: max(760px, calc(100vh - var(--nav-height) - 60px));
       border: none;
+      border-radius: 15px;
+      background: #fff;
       display: block;
     }
     .dna {
       position: fixed;
+      z-index: 0;
       font-size: 90px;
       opacity: .13;
       filter: drop-shadow(0 0 15px #fff);
@@ -111,6 +131,21 @@
     .d1 { left: 7%; top: 25%; }
     .d2 { right: 9%; top: 55%; animation-delay: -3s; }
     .d3 { left: 45%; bottom: 12%; animation-delay: -5s; }
+
+    @media (max-width: 700px) {
+      :root { --nav-height: 64px; }
+      .nav-inner { padding: 11px 14px; }
+      .brand { font-size: 16px; gap: 7px; }
+      .brand-text { max-width: 210px; line-height: 1.05; }
+      .page-nav-btn { padding: 8px 11px; font-size: 12px; }
+      .app-page { padding: calc(var(--nav-height) + 12px) 10px 10px; }
+      .app-shell { padding: 5px; border-radius: 15px; }
+      .streamlit-frame {
+        height: max(780px, calc(100vh - var(--nav-height) - 27px));
+        border-radius: 11px;
+      }
+      .dna { font-size: 64px; }
+    }
   </style>
 </head>
 <body>
@@ -128,14 +163,17 @@
     </div>
   </nav>
 
-  <main class="blank-page">
-    <iframe
-      src="https://h2lzomy25z7wad5moa7tjy.streamlit.app/?embed=true"
-      class="streamlit-frame"
-      title="Streamlit App"
-      allow='geolocation; microphone; camero; fullscreen'
-      sandbox='allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts'>
-    </iframe>
+  <main class="app-page">
+    <section class="app-shell" aria-label="Interactive immunotherapy data explorer">
+      <iframe
+        src="https://h2lzomy25z7wad5moa7tjy.streamlit.app/?embed=true"
+        class="streamlit-frame"
+        title="Interactive Immunotherapy Data Explorer"
+        loading="eager"
+        allow="geolocation; microphone; camera; fullscreen"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts">
+      </iframe>
+    </section>
   </main>
 
   <script src="effects.js?v=20260819-uv2"></script>
