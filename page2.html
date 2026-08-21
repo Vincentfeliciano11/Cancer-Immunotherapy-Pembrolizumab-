@@ -5,177 +5,55 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
   <title>The Depths Of Immunotherapy — Page 2</title>
   <style>
-    :root {
-      --blue: #008cff;
-      --orange: #ff7a00;
-      --nav-height: 70px;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    html, body {
-      min-height: 100%;
-      width: 100%;
-    }
+    :root { --blue:#008cff; --orange:#ff7a00; --nav-height:70px; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html,body { min-height:100%; width:100%; }
     body {
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at 17% 22%, #ff850099, transparent 32%),
-                  radial-gradient(circle at 82% 26%, #30b9ff94, transparent 32%),
-                  linear-gradient(135deg, #0074e8, #1594ff 52%, #0060c7);
-      overflow-x: hidden;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:radial-gradient(circle at 17% 22%,#ff850099,transparent 32%),radial-gradient(circle at 82% 26%,#30b9ff94,transparent 32%),linear-gradient(135deg,#0074e8,#1594ff 52%,#0060c7);
+      overflow-x:hidden;
     }
-    .nav {
-      position: fixed;
-      inset: 0 0 auto;
-      z-index: 999;
-      min-height: var(--nav-height);
-      background: #0060cdee;
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid #ffffff2e;
-    }
-    .nav-inner {
-      max-width: 1450px;
-      margin: auto;
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 900;
-      font-size: 22px;
-      letter-spacing: -.3px;
-    }
-    .brand-text {
-      background: linear-gradient(180deg, #fff, #ffd8ad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .page-nav-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 16px;
-      border: 2px solid #fff;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #008cff, #ff8500);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 900;
-      font-size: 14px;
-      box-shadow: 0 0 15px #00d9ff80, 0 0 12px #ff8a0066;
-      transition: .2s;
-      white-space: nowrap;
-    }
-    .page-nav-btn:hover {
-      transform: translateY(-2px) scale(1.04);
-      box-shadow: 0 0 22px #fff, 0 0 28px #00d9ff, 0 0 20px #ff8a00;
-    }
-    @keyframes glow {
-      50% {
-        text-shadow: 0 0 10px #fff, 0 0 22px #00d9ff, 0 0 28px #ff8a00;
-      }
-    }
-    .electric {
-      animation: glow 2.2s ease-in-out infinite;
-      color: #fff;
-    }
-    .app-page {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      padding: calc(var(--nav-height) + 22px) 22px 22px;
-    }
-    .app-shell {
-      width: min(1500px, 100%);
-      min-height: calc(100vh - var(--nav-height) - 44px);
-      margin: 0 auto;
-      padding: 8px;
-      border: 1px solid #ffffff66;
-      border-radius: 22px;
-      background: #ffffff1f;
-      box-shadow: 0 20px 55px #003e7c66, 0 0 28px #00d9ff38, 0 0 24px #ff8a0030;
-      backdrop-filter: blur(10px);
-      overflow: hidden;
-    }
-    .streamlit-frame {
-      width: 100%;
-      height: max(760px, calc(100vh - var(--nav-height) - 60px));
-      border: none;
-      border-radius: 15px;
-      background: #fff;
-      display: block;
-    }
-    .dna {
-      position: fixed;
-      z-index: 0;
-      font-size: 90px;
-      opacity: .13;
-      filter: drop-shadow(0 0 15px #fff);
-      animation: float 7s ease-in-out infinite;
-      pointer-events: none;
-    }
-    @keyframes float {
-      50% {
-        transform: translateY(-35px) rotate(8deg);
-      }
-    }
-    .d1 { left: 7%; top: 25%; }
-    .d2 { right: 9%; top: 55%; animation-delay: -3s; }
-    .d3 { left: 45%; bottom: 12%; animation-delay: -5s; }
-
-    @media (max-width: 700px) {
-      :root { --nav-height: 64px; }
-      .nav-inner { padding: 11px 14px; }
-      .brand { font-size: 16px; gap: 7px; }
-      .brand-text { max-width: 210px; line-height: 1.05; }
-      .page-nav-btn { padding: 8px 11px; font-size: 12px; }
-      .app-page { padding: calc(var(--nav-height) + 12px) 10px 10px; }
-      .app-shell { padding: 5px; border-radius: 15px; }
-      .streamlit-frame {
-        height: max(780px, calc(100vh - var(--nav-height) - 27px));
-        border-radius: 11px;
-      }
-      .dna { font-size: 64px; }
+    .nav { position:fixed; inset:0 0 auto; z-index:999; min-height:var(--nav-height); background:#0060cdee; backdrop-filter:blur(16px); border-bottom:1px solid #ffffff2e; }
+    .nav-inner { max-width:1700px; margin:auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { display:flex; align-items:center; gap:11px; color:#fff; text-decoration:none; font-weight:900; font-size:22px; letter-spacing:-.3px; }
+    .brand-text { background:linear-gradient(180deg,#fff,#ffd8ad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .page-nav-btn { display:inline-flex; align-items:center; justify-content:center; padding:9px 16px; border:2px solid #fff; border-radius:12px; background:linear-gradient(135deg,#008cff,#ff8500); color:#fff; text-decoration:none; font-weight:900; font-size:14px; box-shadow:0 0 15px #00d9ff80,0 0 12px #ff8a0066; transition:.2s; white-space:nowrap; }
+    .page-nav-btn:hover { transform:translateY(-2px) scale(1.04); box-shadow:0 0 22px #fff,0 0 28px #00d9ff,0 0 20px #ff8a00; }
+    @keyframes glow { 50% { text-shadow:0 0 10px #fff,0 0 22px #00d9ff,0 0 28px #ff8a00; } }
+    .electric { animation:glow 2.2s ease-in-out infinite; color:#fff; }
+    .app-page { position:relative; z-index:1; min-height:100vh; padding:calc(var(--nav-height) + 18px) 16px 24px; }
+    .dashboard-heading { width:min(1700px,100%); margin:0 auto 12px; display:flex; align-items:center; justify-content:space-between; gap:12px; color:#fff; }
+    .dashboard-heading h1 { font-size:clamp(18px,2vw,28px); text-shadow:0 2px 12px #003e7c; }
+    .filter-badge { padding:8px 12px; border:1px solid #ffffff88; border-radius:999px; background:#003f88aa; color:#fff; font-size:13px; font-weight:800; white-space:nowrap; }
+    .app-shell { width:min(1700px,100%); margin:0 auto; padding:6px; border:1px solid #ffffff77; border-radius:20px; background:#ffffff22; box-shadow:0 20px 55px #003e7c66,0 0 28px #00d9ff38,0 0 24px #ff8a0030; backdrop-filter:blur(10px); overflow:hidden; }
+    .streamlit-frame { width:100%; height:1100px; min-height:calc(100vh - var(--nav-height) - 80px); border:none; border-radius:14px; background:#fff; display:block; }
+    .dna { position:fixed; z-index:0; font-size:90px; opacity:.13; filter:drop-shadow(0 0 15px #fff); animation:float 7s ease-in-out infinite; pointer-events:none; }
+    @keyframes float { 50% { transform:translateY(-35px) rotate(8deg); } }
+    .d1 { left:7%; top:25%; } .d2 { right:9%; top:55%; animation-delay:-3s; } .d3 { left:45%; bottom:12%; animation-delay:-5s; }
+    @media (max-width:700px) {
+      :root { --nav-height:64px; }
+      .nav-inner { padding:11px 14px; }
+      .brand { font-size:16px; gap:7px; }
+      .brand-text { max-width:210px; line-height:1.05; }
+      .page-nav-btn { padding:8px 11px; font-size:12px; }
+      .app-page { padding:calc(var(--nav-height) + 12px) 7px 12px; }
+      .dashboard-heading { align-items:flex-start; flex-direction:column; margin-bottom:9px; padding:0 4px; }
+      .filter-badge { font-size:12px; padding:6px 9px; }
+      .app-shell { padding:3px; border-radius:12px; }
+      .streamlit-frame { height:1250px; border-radius:9px; }
+      .dna { font-size:64px; }
     }
   </style>
 </head>
 <body>
-  <div class="dna d1">🧬</div>
-  <div class="dna d2">🧬</div>
-  <div class="dna d3">🧬</div>
-
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="index.html" class="brand">
-        <span>🧬</span>
-        <span class="brand-text electric">The Depths Of Immunotherapy</span>
-      </a>
-      <a href="index.html" class="page-nav-btn">← Home</a>
-    </div>
-  </nav>
-
+  <div class="dna d1">🧬</div><div class="dna d2">🧬</div><div class="dna d3">🧬</div>
+  <nav class="nav"><div class="nav-inner"><a href="index.html" class="brand"><span>🧬</span><span class="brand-text electric">The Depths Of Immunotherapy</span></a><a href="index.html" class="page-nav-btn">← Home</a></div></nav>
   <main class="app-page">
+    <div class="dashboard-heading"><h1>Interactive Immunotherapy Dashboard</h1><span class="filter-badge">🔎 Filters available in dashboard</span></div>
     <section class="app-shell" aria-label="Interactive immunotherapy data explorer">
-      <iframe
-        src="https://h2lzomy25z7wad5moa7tjy.streamlit.app/?embed=true"
-        class="streamlit-frame"
-        title="Interactive Immunotherapy Data Explorer"
-        loading="eager"
-        allow="geolocation; microphone; camera; fullscreen"
-        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts">
-      </iframe>
+      <iframe src="https://h2lzomy25z7wad5moa7tjy.streamlit.app/?embed=true" class="streamlit-frame" title="Interactive Immunotherapy Data Explorer with filters" loading="eager" allow="geolocation; microphone; camera; fullscreen" sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
     </section>
   </main>
-
   <script src="effects.js?v=20260819-uv2"></script>
 </body>
 </html>
